@@ -3,10 +3,9 @@ import Dashboard from './pages/Dashboard'
 import Login from './pages/Login'
 
 function App() {
-
   return (
     <>
-      <div className="card">
+      <div>
         <Routes>
           <Route  path='/' element={<Dashboard/>}/>
           <Route  path='/dashboard' element={<Dashboard/>}/>
