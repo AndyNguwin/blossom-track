@@ -1,14 +1,4 @@
-@import "tailwindcss";
-
-/* Tailwind v4 does custome themes like this? */
-@theme {
-  --color-cream:   oklch(0.9788 0.0152 77.07);
-  --color-white:  oklch(0.9937 0.0095 93.57);
-  --color-pink-main:  oklch(0.7973 0.0855 19.13);
-  --color-pink-secondary:   oklch(0.8582 0.0574 18.33);
-  --color-gray:   oklch(0.5795 0 0);
-  --color-black:    oklch(0.3012 0 0);
-}
+@import "./theme.css";
 
 :root {
   color: var(--color-pink-main);
