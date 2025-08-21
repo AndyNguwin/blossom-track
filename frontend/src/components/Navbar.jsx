@@ -4,7 +4,7 @@ import '../theme.css'
 function Navbar() {
   return (
     <div>
-        <div class='bg-white text-white flex flex-1 flex-row items-center justify-between pl-2 pr-2 pt-3 pb-3'>
+        <div class='bg-white text-white flex flex-1 flex-row items-center justify-between pl-2 pr-6 pt-3 pb-3'>
           <div class='flex flex-row items-center gap-4'>
             <div class='flex flex-row'>
               <h1 class='text-pink-main font-merriweather text-4xl'>Blossom</h1>
