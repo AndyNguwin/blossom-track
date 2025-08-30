@@ -15,7 +15,7 @@ VALUES
   ('Eve', 'Black', 'eve', 'eve@example.com', 'password5');
 
 -- Insert tasks for each user (3-7 tasks per user)
-INSERT INTO Tasks (user_id, name) VALUES
+INSERT INTO Tasks (user_id, task_name) VALUES
   -- Alice (3 tasks)
   (1, 'Drink Water'),
   (1, 'Read Book'),
