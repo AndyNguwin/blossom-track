@@ -8,6 +8,7 @@ app = FastAPI()
 def home():
     return {"message": "First FastAPI app"}
 
+# TODO: Hash passwords using bcrypt
 # TODO: Add database async functionality (with AsyncSession())\
 # Create session per request to avoid error and rollback states; cons of performance overhead
 # TODO: Connection pooling
