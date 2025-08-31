@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from models import Session, Users
 from sqlalchemy.exc import IntegrityError
+from auth import get_password_hash, verify_password
 
 app = FastAPI()
 
@@ -21,7 +22,7 @@ async def register(first_name: str, last_name: str, username: str, email: str, p
             last_name = last_name,
             username = username,
             email = email,
-            password = password
+            password = get_password_hash(password)
         )
         session.add(new_user)
         session.commit()
@@ -54,15 +55,17 @@ async def register(first_name: str, last_name: str, username: str, email: str, p
 async def login(email: str, password: str):
     session = Session()
     try:
-        account_exists = session.query(Users).filter(Users.email == email, Users.password == password).first()
-        if not account_exists:
+        user = session.query(Users).filter(Users.email == email).first()
+        if not user:
+            return {"message": "Invalid email or password"}
+        if not verify_password(password, user.password):
             return {"message": "Invalid email or password"}
         return {
             "message": "Login successful",
             "user": {
-                "first_name": account_exists.first_name,
-                "last_name": account_exists.last_name,
-                "username": account_exists.username,
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "username": user.username,
             }
         }
     except Exception as e:
