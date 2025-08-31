@@ -49,6 +49,26 @@ async def register(first_name: str, last_name: str, username: str, email: str, p
     finally:
         session.close()
 
+@app.post("/auth/login")
+async def login(email: str, password: str):
+    session = Session()
+    try:
+        account_exists = session.query(Users).filter(Users.email == email, Users.password == password).first()
+        if not account_exists:
+            return {"message": "Invalid email or password"}
+        return {
+            "message": "Login successful",
+            "user": {
+                "first_name": account_exists.first_name,
+                "last_name": account_exists.last_name,
+                "username": account_exists.username,
+            }
+        }
+    except Exception as e:
+        return {"message": f"Error logging in: {e}"}
+    finally:
+        session.close()
+
 # Endpoints list
 
 ## Authentication
