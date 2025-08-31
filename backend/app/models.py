@@ -2,15 +2,16 @@ from sqlalchemy import create_engine, Column, Integer, String, Text, Boolean, TI
 from sqlalchemy.engine import URL
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from sqlalchemy.sql import func
-
+from dotenv import load_dotenv
+load_dotenv()
 
 url = URL.create(
     drivername="postgresql",
-    username="postgres",
-    password="zekrom11",
-    host="localhost",
-    database="blossom-track",
-    port=5432
+    username=os.getenv("POSTGRES_USER"),
+    password=os.getenv("POSTGRES_PASSWORD"),
+    host=os.getenv("POSTGRES_HOST"),
+    database=os.getenv("POSTGRES_DB"),
+    port=os.getenv("POSTGRES_PORT", 5432)
 )
 
 engine = create_engine(url)
