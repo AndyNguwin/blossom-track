@@ -3,20 +3,21 @@ from sqlalchemy.engine import URL
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 from sqlalchemy.sql import func
 from dotenv import load_dotenv
+import os
 load_dotenv()
 
 url = URL.create(
     drivername="postgresql",
-    username=os.getenv("POSTGRES_USER"),
-    password=os.getenv("POSTGRES_PASSWORD"),
-    host=os.getenv("POSTGRES_HOST"),
-    database=os.getenv("POSTGRES_DB"),
-    port=os.getenv("POSTGRES_PORT", 5432)
+    username=os.getenv("DB_USERNAME"),
+    password=os.getenv("DB_PASSWORD"),
+    host=os.getenv("DB_HOST"),
+    database=os.getenv("DB_NAME"),
+    port=os.getenv("DB_PORT", 5432)
 )
 
 engine = create_engine(url)
 Session = sessionmaker(bind=engine)
-session = Session()
+# session = Session()
 
 Base = declarative_base()
 
